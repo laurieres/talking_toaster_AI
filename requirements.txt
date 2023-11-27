@@ -1,7 +1,7 @@
 # Main one
 streamlit
 requests
-geopy.geocoders
+torch
 
 wheel
 nbresult
@@ -10,7 +10,6 @@ ipdb
 ipykernel
 yapf
 matplotlib
-pygeohash
 pytest
 seaborn
 numpy==1.23.5
