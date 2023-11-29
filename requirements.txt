@@ -38,3 +38,10 @@ uvicorn
 # tests
 httpx
 pytest-asyncio
+
+#Embedding
+langchain
+openai
+pypdf
+chromadb
+Chroma
