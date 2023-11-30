@@ -10,6 +10,8 @@ from yolov5_v28112023.classify.predict_laurieres import run
 
 # acceptable_formats = ['bmp', 'jpg', 'jpeg', 'png', 'tif', 'tiff', 'dng']
 
+st.markdown("""# Welcome to Toaster Website 🍞""")
+
 img_file_buffer = st.camera_input("Take a picture")
 
 if img_file_buffer is not None:
