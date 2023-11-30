@@ -7,7 +7,7 @@ from PIL import Image
 import numpy as np
 
 from yolov5_v28112023.classify.predict_laurieres import run
-from embedding import embed_and_vectorize_pdf, communicate_with_manual
+#from embedding import embed_and_vectorize_pdf, communicate_with_manual
 
 st.set_page_config(layout="wide")
 
@@ -66,8 +66,8 @@ else:
 
 question = st.text_input('Please input your question')
 
-vector_db = embed_and_vectorize_pdf(image_pred[0])
+#vector_db = embed_and_vectorize_pdf(image_pred[0])
 
-communicate_with_manual(vector_db, question)
+#communicate_with_manual(vector_db, question)
 
 # Calling ChatGPT
