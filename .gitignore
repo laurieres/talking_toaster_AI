@@ -1,7 +1,7 @@
 raw_data/
 .DS_Store
 
-yolov5_v28112023/classify/__pycache__/predict_laurieres.cpython-310.pyc
+*.pyc
 
 *.jpg
 *.jpeg
