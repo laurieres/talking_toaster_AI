@@ -8,8 +8,9 @@ import os
 
 
 def embed_and_vectorize_pdf(object_type):
-    api_key = os.environ.get("OPENAI_API_KEY")
-    manuals_folder = "datasets/manuals"
+    #api_key = os.environ.get("OPENAI_API_KEY")
+    api_key = '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'
+    manuals_folder = "talking_toaster_AI/datasets/manuals"
 
     # Construct the path to the manual based on the object type
     manual_path = os.path.join(manuals_folder, f"{object_type.lower()}.pdf")
