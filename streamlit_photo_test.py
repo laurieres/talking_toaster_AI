@@ -21,17 +21,13 @@ if img_file_buffer is not None:
     # To convert PIL Image to numpy array:
     img_array = np.array(img)
 
-    # Check the type of img_array:
-    # Should output: <class 'numpy.ndarray'>
-    st.write(type(img_array))
+    img.save("camera.jpg")
 
-    # Check the shape of img_array:
-    # Should output shape: (height, width, channels)
-    st.write(img_array.shape)
+    res = run(source="camera.jpg")
 
-res = run(source='oven_test.png')
+    st.write(f"Your photo is {res[0]}")
 
-st.write(f"Your photo is {res[0]}")
+
 
 #path_to_img_file_buffer = ''
 
