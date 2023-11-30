@@ -1,6 +1,4 @@
 import streamlit as st
-import requests
-from datetime import datetime, date, time
 
 import pandas as pd
 
@@ -29,11 +27,11 @@ if img_file_buffer is not None:
     # Should output shape: (height, width, channels)
     st.write(img_array.shape)
 
-path_to_img_file_buffer = ''
+#path_to_img_file_buffer = ''
 
 # Calling the model and make a predictions
 
-image_pred = run(source='path_to_img_file_buffer')
+image_pred = run(source='img_file_buffer')
 
 if image_pred is not None:
     st.write(f"Your photo is {image_pred[0]} with a probability of {round(image_pred[1].item(),2)}")
