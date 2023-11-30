@@ -7,13 +7,11 @@ from PIL import Image
 import numpy as np
 
 from yolov5_v28112023.classify.predict_laurieres import run
-
-# acceptable_formats = ['bmp', 'jpg', 'jpeg', 'png', 'tif', 'tiff', 'dng']
+from embedding import embed_and_vectorize_pdf, communicate_with_manual
 
 st.set_page_config(layout="wide")
 
 # Image at the top
-
 custom_html = """
 <div class="banner">
     <img src="https://img.freepik.com/premium-photo/3d-illustration-yellow-honeycomb-monochrome-honeycomb-honey_116124-2277.jpg?size=626&ext=jpg&ga=GA1.1.1803636316.1701302400&semt=ais">
@@ -64,4 +62,12 @@ else:
     st.write(f"We were not able to upload your photo, please try again 🙌")
 
 
-#st.sidebar.test_input('Name')
+# Calling the PDF
+
+question = st.text_input('Please input your question')
+
+vector_db = embed_and_vectorize_pdf(image_pred[0])
+
+communicate_with_manual(vector_db, question)
+
+# Calling ChatGPT
