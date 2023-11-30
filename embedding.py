@@ -43,8 +43,8 @@ def communicate_with_manual(vector_db, question):
     return response
 
 # Example usage:
-#object_type = "toaster"
-#question = "what age do i have to be to use you?"
-#vector_db = embed_and_vectorize_pdf(object_type)
-#result = communicate_with_manual(vector_db, question)
-#print(result)
+object_type = "toaster"
+question = "what age do i have to be to use you?"
+vector_db = embed_and_vectorize_pdf(object_type)
+result = communicate_with_manual(vector_db, question)
+print(result)
