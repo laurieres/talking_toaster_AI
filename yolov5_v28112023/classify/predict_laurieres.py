@@ -144,6 +144,10 @@ def run(
             result_name = names[top5i[0]]
             result_probability = prob[top5i[0]]
 
+            # Some ideas to improve the lisibility of the function
+            #if result_probqility > 0.8:
+            #    lemmatized_doc = fun_ext_pdf_vect_lem(result_name)
+            #    lemmatize_query =
             return result_name, result_probability
 
 def parse_opt():
