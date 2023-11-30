@@ -29,13 +29,17 @@ if img_file_buffer is not None:
     # Should output shape: (height, width, channels)
     st.write(img_array.shape)
 
+res = run(source='oven_test.png')
+
+st.write(f"Your photo is {res[0]}")
+
 #path_to_img_file_buffer = ''
 
 # Calling the model and make a predictions
 
-image_pred = run(source='img_file_buffer')
+#image_pred = run(source='img_file_buffer')
 
-if image_pred is not None:
-    st.write(f"Your photo is {image_pred[0]} with a probability of {round(image_pred[1].item(),2)}")
-else:
-    st.write(f"We were not able to upload your photo, please try again 🙌")
+#if image_pred is not None:
+#    st.write(f"Your photo is {image_pred[0]} with a probability of {round(image_pred[1].item(),2)}")
+#else:
+#    st.write(f"We were not able to upload your photo, please try again 🙌")
