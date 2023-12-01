@@ -2,7 +2,7 @@ raw_data/
 .DS_Store
 
 *.pyc
-
+.toml
 *.jpg
 *.jpeg
 *.png

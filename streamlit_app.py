@@ -67,9 +67,10 @@ else:
 # Calling the PDF
 if image_pred:
     object = image_pred[0]
-    object = 'toaster'
+    #object = 'toaster'
     vector_db = embed_and_vectorize_pdf(object)
     question = st.text_input('Please input your question')
     # Calling ChatGPT only after object is recognized.
     if question:
-        communicate_with_manual(vector_db, question)
+        response = communicate_with_manual(vector_db, question)
+        st.write(response)
