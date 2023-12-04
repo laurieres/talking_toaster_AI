@@ -8,8 +8,6 @@ import os
 from dotenv import load_dotenv
 
 
-
-
 def embed_and_vectorize_pdf(object_type):
     load_dotenv()
     api_key = os.environ.get("OPENAI_API_KEY")
