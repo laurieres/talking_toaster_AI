@@ -56,8 +56,8 @@ setuptools>=65.5.1 # Snyk vulnerability fix
 langchain
 openai
 pypdf
-chromadb
 Chroma
 pydantic
 tiktoken
 pysqlite3-binary
+chromadb>=0.3.29
