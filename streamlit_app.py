@@ -6,6 +6,10 @@ import streamlit as st
 from PIL import Image
 import numpy as np
 
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+
 from yolov5_v28112023.classify.predict_laurieres import run
 from embedding import embed_and_vectorize_pdf, communicate_with_manual
 
