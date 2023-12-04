@@ -74,7 +74,7 @@ else:
 
 # Calling the PDF
 #while response is None:
-if image_pred and image_pred[0] in ['oven', 'refrigerator','toaster']:
+if image_pred and image_pred[0] in ['oven', 'refrigerator','toaster', 'projector', 'espresso machine']:
     object = image_pred[0]
     #object = 'toaster'
     if "vector_db" not in st.session_state:
