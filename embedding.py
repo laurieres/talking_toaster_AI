@@ -1,16 +1,19 @@
 from langchain.document_loaders import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.vectorstores import Chroma
+from langchain.vectorstores.chroma import Chroma
 from langchain.embeddings.openai import OpenAIEmbeddings
-from langchain.llms import OpenAI # Choosing which LLM
+from langchain.llms.openai import OpenAI # Choosing which LLM
 from langchain.chains.question_answering import load_qa_chain
 import os
+from dotenv import load_dotenv
+
+
 
 
 def embed_and_vectorize_pdf(object_type):
-    #api_key = os.environ.get("OPENAI_API_KEY")
-    api_key = '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'
-    manuals_folder = "talking_toaster_AI/datasets/manuals"
+    load_dotenv()
+    api_key = os.environ.get("OPENAI_API_KEY")
+    manuals_folder = "datasets/"
 
     # Construct the path to the manual based on the object type
     manual_path = os.path.join(manuals_folder, f"{object_type.lower()}.pdf")
@@ -31,7 +34,6 @@ def embed_and_vectorize_pdf(object_type):
 
 def communicate_with_manual(vector_db, question):
     api_key = os.environ.get("OPENAI_API_KEY")
-
     # Use OpenAI language model
     llm = OpenAI(temperature=0, openai_api_key=api_key)
     chain = load_qa_chain(llm, chain_type="map_reduce")
@@ -45,7 +47,8 @@ def communicate_with_manual(vector_db, question):
 
 # Example usage:
 object_type = "toaster"
-question = "what age do i have to be to use you?"
+question = "What age can it be used from?"
+print(os.getcwd())
 vector_db = embed_and_vectorize_pdf(object_type)
 result = communicate_with_manual(vector_db, question)
 print(result)

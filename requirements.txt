@@ -59,3 +59,4 @@ pypdf
 chromadb
 Chroma
 pydantic
+tiktoken

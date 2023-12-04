@@ -7,7 +7,7 @@ from PIL import Image
 import numpy as np
 
 from yolov5_v28112023.classify.predict_laurieres import run
-#from embedding import embed_and_vectorize_pdf, communicate_with_manual
+from embedding import embed_and_vectorize_pdf, communicate_with_manual
 
 st.set_page_config(layout="wide")
 
@@ -43,13 +43,15 @@ st.markdown("""# Welcome to Talking Toaster App 🍞🤖""")
 st.markdown("""### Please take of picture of your domestic appliance ☕️""")
 
 img_file_buffer = st.camera_input("")
+image_pred = None
+question = None
 
-if img_file_buffer is not None:
+if img_file_buffer:
     # To read image file buffer as a PIL Image:
     img = Image.open(img_file_buffer)
 
     # To convert PIL Image to numpy array:
-    img_array = np.array(img)
+    #img_array = np.array(img)
 
     img.save("camera.jpg")
 
@@ -63,11 +65,12 @@ else:
 
 
 # Calling the PDF
-
-question = st.text_input('Please input your question')
-
-#vector_db = embed_and_vectorize_pdf(image_pred[0])
-
-#communicate_with_manual(vector_db, question)
-
-# Calling ChatGPT
+if image_pred:
+    object = image_pred[0]
+    #object = 'toaster'
+    vector_db = embed_and_vectorize_pdf(object)
+    question = st.text_input('Please input your question')
+    # Calling ChatGPT only after object is recognized.
+    if question:
+        response = communicate_with_manual(vector_db, question)
+        st.write(response)
