@@ -62,15 +62,20 @@ if img_file_buffer:
 
 else:
     st.write(f"We were not able to upload your photo, please try again 🙌")
+    if "vector_db" in st.session_state:
+        del st.session_state["vector_db"]
 
 #image_pred='toaster'
 
+
 # Calling the PDF
 #while response is None:
-if image_pred in ['oven', 'refrigerator','toaster']:
+if image_pred and image_pred[0] in ['oven', 'refrigerator','toaster']:
     object = image_pred[0]
     #object = 'toaster'
-    vector_db = embed_and_vectorize_pdf(object)
+    if "vector_db" not in st.session_state:
+        st.session_state["vector_db"] = embed_and_vectorize_pdf(object)
+    vector_db = st.session_state["vector_db"]
     question = st.text_input('Please input your question')
     # Calling ChatGPT only after object is recognized.
     if question:
