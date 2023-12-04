@@ -14,7 +14,7 @@ def embed_and_vectorize_pdf(object_type):
     manuals_folder = "datasets/"
 
     # Construct the path to the manual based on the object type
-    manual_path = os.path.join(manuals_folder, f"{object_type.lower().replacet(' ', '')}.pdf")
+    manual_path = os.path.join(manuals_folder, f"{object_type.lower().replace(' ', '')}.pdf")
 
     # Load the manual
     loader = PyPDFLoader(manual_path)
