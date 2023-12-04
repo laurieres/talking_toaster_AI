@@ -60,4 +60,3 @@ chromadb
 Chroma
 pydantic
 tiktoken
-pysqlite
