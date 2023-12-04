@@ -65,12 +65,15 @@ else:
 
 
 # Calling the PDF
-if image_pred:
-    object = image_pred[0]
-    #object = 'toaster'
-    vector_db = embed_and_vectorize_pdf(object)
-    question = st.text_input('Please input your question')
-    # Calling ChatGPT only after object is recognized.
-    if question:
-        response = communicate_with_manual(vector_db, question)
-        st.write(response)
+while response is None:
+    if image_pred in ['oven', 'refrigerator','toaster']:
+        object = image_pred[0]
+        #object = 'toaster'
+        vector_db = embed_and_vectorize_pdf(object)
+        question = st.text_input('Please input your question')
+        # Calling ChatGPT only after object is recognized.
+        if question:
+            response = communicate_with_manual(vector_db, question)
+            st.write(response)
+    else:
+        st.write(f"These object is not talking to you, please try with a toaster or alike")
