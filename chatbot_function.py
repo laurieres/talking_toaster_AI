@@ -25,11 +25,11 @@ def first_call(pred):
     #print(welcome_message.choices[0].message.content)
     return welcome_message
 
-tmp = first_call(pred)
+#tmp = first_call(pred)
 
 def answer_query(response, tmp):
 
-    print(tmp)
+    #print(tmp)
 
     client = OpenAI(
         api_key=os.environ['OPENAI_API_KEY'],)
@@ -47,4 +47,4 @@ def answer_query(response, tmp):
     #print(answer_message.choices[0].message.content)
     return answer_message
 
-answer_query(response, tmp)
+#answer_query(response, tmp)
