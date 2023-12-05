@@ -2,7 +2,6 @@ import os
 import streamlit as st
 import openai
 from openai import OpenAI
-import tempfile
 import random
 
 
