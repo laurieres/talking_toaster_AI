@@ -93,9 +93,11 @@ if image_pred and image_pred[0] in ['oven', 'refrigerator','toaster', 'projector
     # Calling ChatGPT only after object is recognized.
     if question:
         response = communicate_with_manual(vector_db, question)
-        # Implemeting ChatGPT Query
-        st.write(answer_query(response, tmp))
+        st.write(f"This is the response from embedding.py {response}")
 
-        #st.write(response)
+        # Implemeting ChatGPT Query
+        st.write(f"This is the response with GPT Query {answer_query(response, tmp)}")
+
+
 else:
     st.write(f"These object is not talking to you, please try with a toaster or alike")
