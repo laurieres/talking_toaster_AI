@@ -13,6 +13,8 @@ sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 from yolov5_v28112023.classify.predict_laurieres import run
 from embedding import embed_and_vectorize_pdf, communicate_with_manual
 
+from chatbot_function import first_call, answer_query
+
 st.set_page_config(layout="wide")
 
 st.write('this is version 2')
@@ -76,6 +78,7 @@ else:
 
 # Calling the PDF
 #while response is None:
+
 if image_pred and image_pred[0] in ['oven', 'refrigerator','toaster', 'projector', 'espresso machine']:
     object = image_pred[0]
     #object = 'toaster'
@@ -89,3 +92,9 @@ if image_pred and image_pred[0] in ['oven', 'refrigerator','toaster', 'projector
         st.write(response)
 else:
     st.write(f"These object is not talking to you, please try with a toaster or alike")
+
+tmp = first_call(image_pred[0])
+
+st.write(tmp)
+
+st.write(answer_query(response, tmp))
