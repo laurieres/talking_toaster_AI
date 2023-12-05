@@ -66,7 +66,11 @@ if img_file_buffer:
     image_pred = run(source="camera.jpg")
 
     st.markdown(f"Your photo is a {image_pred[0]}")
-    #st.session_state['prediction'] = image_pred[0]
+    if 'previous_prediction' in st.session_state and st.session_state['previous_prediction'] != image_pred[0]:
+        # Clear specific session states here
+        del st.session_state['welcome_message']
+    # Update the previous prediction in the session state
+    st.session_state['previous_prediction'] = image_pred[0]
 
     #st.write(f"Your photo is {image_pred[0]} with a probability of {round(image_pred[1].item(),2)}")
 
