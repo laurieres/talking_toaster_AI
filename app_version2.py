@@ -81,8 +81,9 @@ else:
 if image_pred and image_pred[0] in ['oven', 'refrigerator','toaster', 'projector', 'espresso machine']:
     object = image_pred[0]
     # Implementing first ChatGPT 'Hello Message'
-    tmp = first_call(object)
-    st.write(tmp)
+    if 'welcome_message' not in st.session_state:
+        st.session_state['welcome_message'] = first_call(object)
+        st.write(st.session_state['welcome_message'])
 
     #object = 'toaster'
     if "vector_db" not in st.session_state:
@@ -97,7 +98,7 @@ if image_pred and image_pred[0] in ['oven', 'refrigerator','toaster', 'projector
         st.write(f"This is the response from embedding.py : {response}")
 
         # Implemeting ChatGPT Query
-        st.write(answer_query(response, tmp))
+        st.write(answer_query(response, st.session_state['welcome_message']))
 
 else:
     st.write(f"These object is not talking to you, please try with a toaster or alike")
