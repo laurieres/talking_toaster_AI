@@ -77,7 +77,6 @@ else:
 
 
 # Calling the PDF
-#while response is None:
 
 if image_pred and image_pred[0] in ['oven', 'refrigerator','toaster', 'projector', 'espresso machine']:
     object = image_pred[0]
@@ -88,15 +87,15 @@ if image_pred and image_pred[0] in ['oven', 'refrigerator','toaster', 'projector
     #object = 'toaster'
     if "vector_db" not in st.session_state:
         st.session_state["vector_db"] = embed_and_vectorize_pdf(object)
-    vector_db = st.session_state["vector_db"]
-    question = st.text_input(' ')
+        vector_db = st.session_state["vector_db"]
+        question = st.text_input(' ')
     # Calling ChatGPT only after object is recognized.
     if question:
         response = communicate_with_manual(vector_db, question)
-        st.write(f"This is the response from embedding.py {response}")
+        st.write(f"This is the response from embedding.py : {response}")
 
         # Implemeting ChatGPT Query
-        st.write(f"This is the response with GPT Query {answer_query(response, tmp)}")
+        st.write(answer_query(response, tmp))
 
 
 else:
