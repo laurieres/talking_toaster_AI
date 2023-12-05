@@ -66,6 +66,8 @@ if img_file_buffer:
     image_pred = run(source="camera.jpg")
 
     st.markdown(f"Your photo is a {image_pred[0]}")
+    #st.session_state['prediction'] = image_pred[0]
+
     #st.write(f"Your photo is {image_pred[0]} with a probability of {round(image_pred[1].item(),2)}")
 
 else:
@@ -99,7 +101,7 @@ if image_pred and image_pred[0] in ['oven', 'refrigerator','toaster', 'projector
         st.write(f"This is the response from embedding.py : {response}")
 
         # Implemeting ChatGPT Query
-        st.write(answer_query(response, st.session_state['welcome_message']))
+        st.write(answer_query(question, response, st.session_state['welcome_message']))
 
 else:
     st.write(f"These object is not talking to you, please try with a toaster or alike")
