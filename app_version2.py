@@ -81,19 +81,21 @@ else:
 
 if image_pred and image_pred[0] in ['oven', 'refrigerator','toaster', 'projector', 'espresso machine']:
     object = image_pred[0]
+    # Implementing first ChatGPT 'Hello Message'
+    tmp = first_call(object)
+    st.write(tmp)
+
     #object = 'toaster'
     if "vector_db" not in st.session_state:
         st.session_state["vector_db"] = embed_and_vectorize_pdf(object)
     vector_db = st.session_state["vector_db"]
-    question = st.text_input('Please input your question')
+    question = st.text_input()
     # Calling ChatGPT only after object is recognized.
     if question:
         response = communicate_with_manual(vector_db, question)
-        st.write(response)
-
         # Implemeting ChatGPT Query
-        tmp = first_call(object)
-        st.write(tmp)
         st.write(answer_query(response, tmp))
+
+        #st.write(response)
 else:
     st.write(f"These object is not talking to you, please try with a toaster or alike")

@@ -9,7 +9,7 @@ response = 'switch it on'
 def first_call(pred):
 
     client = OpenAI(
-        api_key=os.environ['OPENAI_API_KEY'],)
+        api_key=os.environ['OPENAI_API_KEY_2'],)
 
     prompt_template = f"""first, will only anwser the first querie like You are a object talking,
         acknowledge the {pred} and saying something funny. you will finish the prompt saying,
