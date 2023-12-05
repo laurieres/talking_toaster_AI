@@ -64,4 +64,3 @@ chromadb>=0.3.29
 
 # Miguel Chatbot
 openai
-tempfile
