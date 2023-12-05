@@ -90,11 +90,10 @@ if image_pred and image_pred[0] in ['oven', 'refrigerator','toaster', 'projector
     if question:
         response = communicate_with_manual(vector_db, question)
         st.write(response)
+
+        # Implemeting ChatGPT Query
+        tmp = first_call(object)
+        st.write(tmp)
+        st.write(answer_query(response, tmp))
 else:
     st.write(f"These object is not talking to you, please try with a toaster or alike")
-
-tmp = first_call(image_pred[0])
-
-st.write(tmp)
-
-st.write(answer_query(response, tmp))
