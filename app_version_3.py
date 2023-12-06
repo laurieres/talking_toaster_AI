@@ -103,7 +103,7 @@ if st.button("Open Camera") or 'main_button' in st.session_state:
             #st.write(f"{response}")
 
             # Implemeting ChatGPT Query
-            st.write(answer_query(question, response, st.session_state['welcome_message']))
+            st.write(answer_query(question, response, object, st.session_state['welcome_message']))
 
             # Implementing Audio
 
