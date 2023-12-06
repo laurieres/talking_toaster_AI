@@ -38,7 +38,7 @@ custom_html = """
 </style>
 """
 # Display the custom HTML
-st.components.v1.html(custom_html)
+#st.components.v1.html(custom_html)
 
 # Displaying an image on the app
 
