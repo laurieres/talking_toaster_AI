@@ -80,7 +80,7 @@ if image_pred and image_pred[0] in ['oven', 'refrigerator','toaster', 'projector
     if 'welcome_message' not in st.session_state:
         st.session_state['welcome_message'] = first_call(object)
 
-    st.write(st.session_state['welcome_message'])
+        st.write(st.session_state['welcome_message'])
 
     if "vector_db" not in st.session_state:
         st.session_state["vector_db"] = embed_and_vectorize_pdf(object)
