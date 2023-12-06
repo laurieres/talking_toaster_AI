@@ -51,11 +51,14 @@ st.markdown("""# Welcome to Talking Toaster App 🍞🤖""")
 
 st.markdown("""### Please take of picture of your domestic appliance ☕️""")
 
-img_file_buffer = st.camera_input("")
+#img_file_buffer = st.camera_input("")
 image_pred = None
 question = None
 
 if st.button("Open Camera"):
+
+    img_file_buffer = st.camera_input("")
+
     if img_file_buffer:
         img = Image.open(img_file_buffer)
         img.save("camera.jpg")
