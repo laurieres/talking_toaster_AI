@@ -30,7 +30,7 @@ def first_call(pred):
 
 #tmp = first_call(pred)
 
-def answer_query(question, response, pred):
+def answer_query(question, response, pred,welcome):
 
     #print(tmp)
 
@@ -38,7 +38,7 @@ def answer_query(question, response, pred):
         api_key=os.environ['OPENAI_API_KEY'],)
 
     second_prompt =  f"""
-            This message follows a welcome message and a question in a conversation sequence. The welcome message was: welcome
+            This message follows a welcome message and a question in a conversation sequence. The welcome message was: {welcome}
             Your role is to respond to the query: "{question}".
             Guidelines:
             1. Character: Assume the persona of a talking {pred}.
