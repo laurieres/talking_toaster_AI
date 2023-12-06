@@ -16,10 +16,7 @@ from embedding import embed_and_vectorize_pdf, communicate_with_manual
 from chatbot_function import first_call, answer_query
 
 # Front End
-st.set_page_config(layout="wide")
-st.set_page_config(page_title="Talking Toaster")
-
-
+st.set_page_config(page_title="Talking Toaster", layout="wide")
 
 #st.write('this is version 2')
 
