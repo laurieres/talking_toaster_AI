@@ -110,3 +110,5 @@ if st.button("Open Camera") or 'main_button' in st.session_state:
 
     else:
         st.write(f"These object is not talking to you, please try with a toaster or alike")
+
+# Writing the same with file upload
