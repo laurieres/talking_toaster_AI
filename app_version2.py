@@ -68,17 +68,18 @@ if img_file_buffer:
 
 else:
     st.write(f"We were not able to upload your photo, please try again 🙌")
-
-if "vector_db" in st.session_state:
-    del st.session_state["vector_db"]
+    if "vector_db" in st.session_state:
+        del st.session_state["vector_db"]
 
 # Calling the PDF
 if image_pred and image_pred[0] in ['oven', 'refrigerator','toaster', 'projector', 'espresso machine']:
     object = image_pred[0]
-    st.session_state['welcome_message']=None
+    st.session_state['welcome_message']=""
+
     # Implementing first ChatGPT 'Hello Message'
     if 'welcome_message' not in st.session_state:
         st.session_state['welcome_message'] = first_call(object)
+
     st.write(st.session_state['welcome_message'])
 
     if "vector_db" not in st.session_state:
@@ -86,10 +87,12 @@ if image_pred and image_pred[0] in ['oven', 'refrigerator','toaster', 'projector
 
     vector_db = st.session_state["vector_db"]
     question = st.text_input(' ')
+
     # Calling ChatGPT only after object is recognized.
     if question:
         response = communicate_with_manual(vector_db, question)
         st.write(f"This is the response from embedding.py : {response}")
+
         # Implemeting ChatGPT Query
         st.write(answer_query(question, response, st.session_state['welcome_message']))
 else:
