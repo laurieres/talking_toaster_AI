@@ -59,20 +59,20 @@ st.markdown("""### Please take of picture of your domestic appliance ☕️""")
 # Button to open the camera
 if st.button("Open Camera"):
     img_file_buffer = st.camera_input("")
-if img_file_buffer:
-    img = Image.open(img_file_buffer)
-    img.save("camera.jpg")
-    image_pred = run(source="camera.jpg")
-    st.markdown(f"Your photo is a {image_pred[0]}")
-    if 'previous_prediction' in st.session_state and st.session_state['previous_prediction'] != image_pred[0]:
-        # Clear specific session states here
-        del st.session_state['welcome_message']
-    # Update the previous prediction in the session state
-    st.session_state['previous_prediction'] = image_pred[0]
-else:
-    st.write(f"We were not able to upload your photo, please try again 🙌")
-    if "vector_db" in st.session_state:
-        del st.session_state["vector_db"]
+    if img_file_buffer:
+        img = Image.open(img_file_buffer)
+        img.save("camera.jpg")
+        image_pred = run(source="camera.jpg")
+        st.markdown(f"Your photo is a {image_pred[0]}")
+        if 'previous_prediction' in st.session_state and st.session_state['previous_prediction'] != image_pred[0]:
+            # Clear specific session states here
+            del st.session_state['welcome_message']
+        # Update the previous prediction in the session state
+        st.session_state['previous_prediction'] = image_pred[0]
+    else:
+        st.write(f"We were not able to upload your photo, please try again 🙌")
+        if "vector_db" in st.session_state:
+            del st.session_state["vector_db"]
 #image_pred='toaster'
 
 
