@@ -61,10 +61,10 @@ if img_file_buffer:
     image_pred = run(source="camera.jpg")
     st.markdown(f"Your photo is a {image_pred[0]}")
 
-    #if 'previous_prediction' in st.session_state and st.session_state['previous_prediction'] != image_pred[0]:
-        #del st.session_state['welcome_message']
+    if 'previous_prediction' in st.session_state and st.session_state['previous_prediction'] != image_pred[0]:
+        del st.session_state['welcome_message']
 
-    #st.session_state['previous_prediction'] = image_pred[0]
+    st.session_state['previous_prediction'] = image_pred[0]
 
 else:
     st.write(f"We were not able to upload your photo, please try again 🙌")
@@ -72,12 +72,10 @@ else:
 if "vector_db" in st.session_state:
     del st.session_state["vector_db"]
 
-
 # Calling the PDF
-
 if image_pred and image_pred[0] in ['oven', 'refrigerator','toaster', 'projector', 'espresso machine']:
     object = image_pred[0]
-    st.session_state['welcome_message']=""
+    #st.session_state['welcome_message']=""
     # Implementing first ChatGPT 'Hello Message'
     if 'welcome_message' not in st.session_state:
         st.session_state['welcome_message'] = first_call(object)
