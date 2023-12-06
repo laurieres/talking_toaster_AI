@@ -15,9 +15,13 @@ from embedding import embed_and_vectorize_pdf, communicate_with_manual
 
 from chatbot_function import first_call, answer_query
 
+# Front End
 st.set_page_config(layout="wide")
+st.set_page_config(page_title="Talking Toaster")
 
-st.write('this is version 2')
+
+
+#st.write('this is version 2')
 
 # Image at the top
 custom_html = """
@@ -86,6 +90,7 @@ else:
 
 if image_pred and image_pred[0] in ['oven', 'refrigerator','toaster', 'projector', 'espresso machine']:
     object = image_pred[0]
+    st.session_state['welcome_message']=""
     # Implementing first ChatGPT 'Hello Message'
     if 'welcome_message' not in st.session_state:
         st.session_state['welcome_message'] = first_call(object)
