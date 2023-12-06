@@ -103,10 +103,10 @@ if st.button("Open Camera") or 'main_button' in st.session_state:
         # Calling ChatGPT only after object is recognized.
         if question:
             response = communicate_with_manual(vector_db, question)
-            #st.write(f"This is the response from embedding.py : {response}")
+            st.write(f"{response}")
 
             # Implemeting ChatGPT Query
-            st.write(answer_query(question, response, st.session_state['welcome_message']))
+            #st.write(answer_query(question, response, st.session_state['welcome_message']))
 
             # Implementing Audio
 
@@ -175,10 +175,10 @@ if st.button("Upload File") or 'file_button' in st.session_state:
         # Calling ChatGPT only after object is recognized.
         if question:
             response = communicate_with_manual(vector_db, question)
-            #st.write(f"This is the response from embedding.py : {response}")
+            st.write(f"{response}")
 
             # Implemeting ChatGPT Query
-            st.write(answer_query(question, response, st.session_state['welcome_message']))
+            #st.write(answer_query(question, response, st.session_state['welcome_message']))
 
     else:
         st.write(f"These object is not talking to you, please try with a toaster or alike")
