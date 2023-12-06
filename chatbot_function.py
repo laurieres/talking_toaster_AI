@@ -78,29 +78,29 @@ def speech(message):
 
     return speech
 
-            """
 
-    answer_message = client.chat.completions.create(
-        messages=[{"role": "system", "content": second_prompt}],
-        model="gpt-3.5-turbo", temperature= 0.5
-    )
 
-    answer_message = answer_message.choices[0].message.content
+#     answer_message = client.chat.completions.create(
+#         messages=[{"role": "system", "content": second_prompt}],
+#         model="gpt-3.5-turbo", temperature= 0.5
+#     )
 
-    #print(answer_message.choices[0].message.content)
-    return answer_message
+#     answer_message = answer_message.choices[0].message.content
 
-#answer_query(response, tmp)
+#     #print(answer_message.choices[0].message.content)
+#     return answer_message
 
-def speech(message):
+# #answer_query(response, tmp)
 
-    client = OpenAI(
-        api_key=os.environ['OPENAI_API_KEY'],)
+# def speech(message):
 
-    speech = client.audio.speech.create(
-        model="tts-1",
-        voice="onyx",
-        input= message
-        )
+#     client = OpenAI(
+#         api_key=os.environ['OPENAI_API_KEY'],)
 
-    return speech
+#     speech = client.audio.speech.create(
+#         model="tts-1",
+#         voice="onyx",
+#         input= message
+#         )
+
+#     return speech
