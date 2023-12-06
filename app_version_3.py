@@ -13,7 +13,7 @@ sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 from yolov5_v28112023.classify.predict_laurieres import run
 from embedding import embed_and_vectorize_pdf, communicate_with_manual
 
-from chatbot_function import first_call, answer_query
+from chatbot_function import first_call, answer_query, speech
 
 # Front End
 st.set_page_config(page_title="Talking Toaster", layout="wide")
@@ -108,7 +108,22 @@ if st.button("Open Camera") or 'main_button' in st.session_state:
             # Implemeting ChatGPT Query
             st.write(answer_query(question, response, st.session_state['welcome_message']))
 
+            # Implementing Audio
+
+            audio_file_path = "output.mp3"
+            speech(st.session_state['welcome_message']).stream_to_file(audio_file_path)
+
+            # Play the audio file
+            st.audio(audio_file_path, format='audio/mp3')
+
+
     else:
         st.write(f"These object is not talking to you, please try with a toaster or alike")
 
 # Writing the same with file upload
+
+
+#audio_file = open('myaudio.ogg', 'rb')
+#audio_bytes = audio_file.read()
+#
+#st.audio(audio_bytes, format='audio/ogg')

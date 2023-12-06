@@ -54,3 +54,16 @@ def answer_query(question, response, pred):
     return answer_message
 
 #answer_query(response, tmp)
+
+def speech(message):
+
+    client = OpenAI(
+        api_key=os.environ['OPENAI_API_KEY'],)
+
+    speech = client.audio.speech.create(
+        model="tts-1",
+        voice="onyx",
+        input= message
+        )
+
+    return speech
