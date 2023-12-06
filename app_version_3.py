@@ -100,7 +100,7 @@ if st.button("Open Camera") or 'main_button' in st.session_state:
         # Calling ChatGPT only after object is recognized.
         if question:
             response = communicate_with_manual(vector_db, question)
-            st.write(f"{response}")
+            #st.write(f"{response}")
 
             # Implemeting ChatGPT Query
             st.write(answer_query(question, response, st.session_state['welcome_message']))
