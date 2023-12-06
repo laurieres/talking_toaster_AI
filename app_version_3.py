@@ -40,16 +40,13 @@ custom_html = """
 # Display the custom HTML
 #st.components.v1.html(custom_html)
 
-# Displaying an image on the app
-
-#website_image = Image.open('yolov5_v28112023/toaster_streamlit.jpg')
-#st.image(website_image)
-
 # Running our model
 
 st.markdown("""# Welcome to Talking Toaster App 🍞🤖""")
 
 st.markdown("""### Please take of picture of your domestic appliance ☕️""")
+
+st.markdown("<br>", unsafe_allow_html=True)
 
 #img_file_buffer = st.camera_input("")
 image_pred = None
