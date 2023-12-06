@@ -55,7 +55,9 @@ st.markdown("""### Please take of picture of your domestic appliance ☕️""")
 image_pred = None
 question = None
 
-if st.button("Open Camera"):
+if st.button("Open Camera") or 'main_button' in st.session_state:
+
+    st.session_state['main_button']=True
 
     img_file_buffer = st.camera_input("")
 
