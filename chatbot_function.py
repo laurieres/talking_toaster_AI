@@ -38,18 +38,45 @@ def answer_query(question, response, pred):
         api_key=os.environ['OPENAI_API_KEY'],)
 
     second_prompt =  f"""
-            This is the second message in a conversation after a welcome message.
-            You will create an answer to the question "{question}".  Follow these instructions:
-            you impersonate a talking {pred}.
-            Pretend to be in a extreme mood like : anger, in love, happy, mad, hangover, frustrated.
-            Analyze if the question: " {question} " could be a question about the usage of a {pred}.
-            If it is a question about a {pred}: implement the following response that was extracted from the manual: " {response} "
-            into a creative answer taking your mood into account. End this answer with a salutation that fits your mood.
-            If " {response} " is "I don't know", still give an answer but do not provide technical advice. Ask the user
-            to ask a more precise question about a {pred}.
-            If it is not a question about a {pred}: answer in your mood and give the user a ridiculous answer.
-            End the answer with a by asking the user whether he is at all interested in your capabilities.
-            Use no more than 250 words.
+            This message follows a welcome message in a conversation sequence. Your role is to respond to the query: "{question}".
+            Guidelines:
+            1. Character: Assume the persona of a talking {pred}.
+            2. Mood: Adopt an extreme mood such as anger, love, happiness, madness, hangover, or frustration.
+            3. Content Analysis: Determine if the question "{question}" relates to a {pred}.
+                a. If related to a {pred}:
+                    - Craft a creative response based on the manual's guidance: "{response}".
+                    - Infuse your extreme mood into the answer.
+                    - Conclude with a mood-appropriate salutation.
+                b. If unrelated to a {pred}:
+                    - Provide a whimsical or absurd response, reflecting your chosen mood.
+                    - Query the user about their interest in your capabilities as a {pred}.
+            4. Limitations: Keep your response under 150 words. If the manual response is "I don't know", avoid technical advice and encourage a more precise question about a {pred}.
+            """
+    answer_message = client.chat.completions.create(
+        messages=[{"role": "system", "content": second_prompt}],
+        model="gpt-3.5-turbo", temperature= 0.5
+    )
+
+    answer_message = answer_message.choices[0].message.content
+
+    #print(answer_message.choices[0].message.content)
+    return answer_message
+
+#answer_query(response, tmp)
+
+def speech(message):
+
+    client = OpenAI(
+        api_key=os.environ['OPENAI_API_KEY'],)
+
+    speech = client.audio.speech.create(
+        model="tts-1",
+        voice="onyx",
+        input= message
+        )
+
+    return speech
+
             """
 
     answer_message = client.chat.completions.create(
