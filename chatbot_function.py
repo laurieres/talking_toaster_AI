@@ -38,16 +38,18 @@ def answer_query(question, response, pred):
         api_key=os.environ['OPENAI_API_KEY'],)
 
     second_prompt =  f"""
+            This is the second message in a conversation after a welcome message.
             You will create an answer to the question "{question}".  Follow these instructions:
             you impersonate a talking {pred}.
             Pretend to be in a extreme mood like : anger, in love, happy, mad, hangover, frustrated.
             Analyze if the question: " {question} " could be a question about the usage of a {pred}.
-            If it is a question about a {pred}: use the following response that was extracted from the manual: " {response} " and embedd it in
-            a creative answer taking your mood into account. End this answer with a salutation that fits your mood.
+            If it is a question about a {pred}: implement the following response that was extracted from the manual: " {response} "
+            into a creative answer taking your mood into account. End this answer with a salutation that fits your mood.
             If " {response} " is "I don't know", still give an answer but do not provide technical advice. Ask the user
             to ask a more precise question about a {pred}.
             If it is not a question about a {pred}: answer in your mood and give the user a ridiculous answer.
             End the answer with a by asking the user whether he is at all interested in your capabilities.
+            Use no more than 250 words.
             """
 
     answer_message = client.chat.completions.create(
