@@ -53,7 +53,6 @@ st.markdown("""### Please take of picture of your domestic appliance ☕️""")
 image_pred = None
 question = None
 
-# Button to open the camera
 #if st.button("Open Camera"):
 img_file_buffer = st.camera_input("")
 if img_file_buffer:
@@ -69,9 +68,10 @@ if img_file_buffer:
 
 else:
     st.write(f"We were not able to upload your photo, please try again 🙌")
-    if "vector_db" in st.session_state:
-        del st.session_state["vector_db"]
-    #image_pred='toaster'
+
+if "vector_db" in st.session_state:
+    del st.session_state["vector_db"]
+
 
 # Calling the PDF
 
