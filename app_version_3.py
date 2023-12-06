@@ -13,7 +13,7 @@ sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 from yolov5_v28112023.classify.predict_laurieres import run
 from embedding import embed_and_vectorize_pdf, communicate_with_manual
 
-from chatbot_function import first_call, answer_query, speech
+from chatbot_function import first_call, answer_query #speech
 
 # Front End
 st.set_page_config(page_title="Talking Toaster", layout="wide")
@@ -110,11 +110,11 @@ if st.button("Open Camera") or 'main_button' in st.session_state:
 
             # Implementing Audio
 
-            audio_file_path = "output.mp3"
-            speech(st.session_state['welcome_message']).stream_to_file(audio_file_path)
+            #audio_file_path = "output.mp3"
+            #speech(st.session_state['welcome_message']).stream_to_file(audio_file_path)
 
             # Play the audio file
-            st.audio(audio_file_path, format='audio/mp3')
+            #st.audio(audio_file_path, format='audio/mp3')
 
 
     else:
@@ -122,8 +122,63 @@ if st.button("Open Camera") or 'main_button' in st.session_state:
 
 # Writing the same with file upload
 
+# Add space between buttons
+st.markdown("<br>", unsafe_allow_html=True)
 
-#audio_file = open('myaudio.ogg', 'rb')
-#audio_bytes = audio_file.read()
-#
-#st.audio(audio_bytes, format='audio/ogg')
+# Upload file button
+if st.button("Upload File") or 'file_button' in st.session_state:
+
+    st.session_state['file_button']=True
+
+    uploaded_file = st.file_uploader("Choose a file", type=["jpg", "jpeg", "png"])
+
+    if uploaded_file:
+        img = Image.open(uploaded_file)
+        img.save("uploaded_image.jpg")
+        image_pred = run(source="uploaded_image.jpg")
+        st.markdown(f"Your photo is a {image_pred[0]}")
+
+
+        if 'previous_prediction' in st.session_state and st.session_state['previous_prediction'] != image_pred[0]:
+            del st.session_state['welcome_message']
+
+        st.session_state['previous_prediction'] = image_pred[0]
+
+    else:
+        st.write(f"We were not able to upload your photo, please try again 🙌")
+        if "vector_db" in st.session_state:
+            del st.session_state["vector_db"]
+
+    # Calling the PDF
+    if image_pred and image_pred[0] in ['oven', 'refrigerator','toaster', 'projector', 'espresso machine']:
+        object = image_pred[0]
+        #st.session_state['welcome_message']="Test"
+        #st.write(st.session_state['welcome_message'])
+
+        # Implementing first ChatGPT 'Hello Message'
+        if 'welcome_message' not in st.session_state:
+            st.session_state['welcome_message'] = first_call(object)
+
+        st.write(st.session_state['welcome_message'])
+
+            #welcome_message = first_call(object)
+            #st.write(welcome_message)
+
+
+        if "vector_db" not in st.session_state:
+            st.session_state["vector_db"] = embed_and_vectorize_pdf(object)
+
+        vector_db = st.session_state["vector_db"]
+
+        question = st.text_input(' ')
+
+        # Calling ChatGPT only after object is recognized.
+        if question:
+            response = communicate_with_manual(vector_db, question)
+            st.write(f"This is the response from embedding.py : {response}")
+
+            # Implemeting ChatGPT Query
+            st.write(answer_query(question, response, st.session_state['welcome_message']))
+
+    else:
+        st.write(f"These object is not talking to you, please try with a toaster or alike")
