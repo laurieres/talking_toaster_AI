@@ -4,6 +4,6 @@ primaryColor = '#FF8C02' # Bright Orange
 
 backgroundColor = '#00325B' # Dark Blue
 
-secondaryBackgroundColor = '#55B2FF' # Lighter Blue
+secondaryBackgroundColor = '#00325B' # Lighter Blue
 
 textColor = '#FF8C02'
