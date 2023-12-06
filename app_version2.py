@@ -55,52 +55,53 @@ img_file_buffer = st.camera_input("")
 image_pred = None
 question = None
 
-if img_file_buffer:
-    img = Image.open(img_file_buffer)
-    img.save("camera.jpg")
-    image_pred = run(source="camera.jpg")
-    st.markdown(f"Your photo is a {image_pred[0]}")
+if st.button("Open Camera"):
+    if img_file_buffer:
+        img = Image.open(img_file_buffer)
+        img.save("camera.jpg")
+        image_pred = run(source="camera.jpg")
+        st.markdown(f"Your photo is a {image_pred[0]}")
 
-    if 'previous_prediction' in st.session_state and st.session_state['previous_prediction'] != image_pred[0]:
-        del st.session_state['welcome_message']
+        if 'previous_prediction' in st.session_state and st.session_state['previous_prediction'] != image_pred[0]:
+            del st.session_state['welcome_message']
 
-    st.session_state['previous_prediction'] = image_pred[0]
+        st.session_state['previous_prediction'] = image_pred[0]
 
-else:
-    st.write(f"We were not able to upload your photo, please try again 🙌")
-    if "vector_db" in st.session_state:
-        del st.session_state["vector_db"]
+    else:
+        st.write(f"We were not able to upload your photo, please try again 🙌")
+        if "vector_db" in st.session_state:
+            del st.session_state["vector_db"]
 
-# Calling the PDF
-if image_pred and image_pred[0] in ['oven', 'refrigerator','toaster', 'projector', 'espresso machine']:
-    object = image_pred[0]
-    #st.session_state['welcome_message']="Test"
-    #st.write(st.session_state['welcome_message'])
+    # Calling the PDF
+    if image_pred and image_pred[0] in ['oven', 'refrigerator','toaster', 'projector', 'espresso machine']:
+        object = image_pred[0]
+        #st.session_state['welcome_message']="Test"
+        #st.write(st.session_state['welcome_message'])
 
-    # Implementing first ChatGPT 'Hello Message'
-    if 'welcome_message' not in st.session_state:
-        st.session_state['welcome_message'] = first_call(object)
+        # Implementing first ChatGPT 'Hello Message'
+        if 'welcome_message' not in st.session_state:
+            st.session_state['welcome_message'] = first_call(object)
 
-    st.write(st.session_state['welcome_message'])
+        st.write(st.session_state['welcome_message'])
 
-        #welcome_message = first_call(object)
-        #st.write(welcome_message)
+            #welcome_message = first_call(object)
+            #st.write(welcome_message)
 
 
-    if "vector_db" not in st.session_state:
-        st.session_state["vector_db"] = embed_and_vectorize_pdf(object)
+        if "vector_db" not in st.session_state:
+            st.session_state["vector_db"] = embed_and_vectorize_pdf(object)
 
-    vector_db = st.session_state["vector_db"]
+        vector_db = st.session_state["vector_db"]
 
-    question = st.text_input(' ')
+        question = st.text_input(' ')
 
-    # Calling ChatGPT only after object is recognized.
-    if question:
-        response = communicate_with_manual(vector_db, question)
-        st.write(f"This is the response from embedding.py : {response}")
+        # Calling ChatGPT only after object is recognized.
+        if question:
+            response = communicate_with_manual(vector_db, question)
+            st.write(f"This is the response from embedding.py : {response}")
 
-        # Implemeting ChatGPT Query
-        st.write(answer_query(question, response, st.session_state['welcome_message']))
+            # Implemeting ChatGPT Query
+            st.write(answer_query(question, response, st.session_state['welcome_message']))
 
-else:
-    st.write(f"These object is not talking to you, please try with a toaster or alike")
+    else:
+        st.write(f"These object is not talking to you, please try with a toaster or alike")
