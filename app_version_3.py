@@ -42,9 +42,9 @@ custom_html = """
 
 # Running our model
 
-st.markdown("""# Welcome to Talking Toaster App 🍞🤖""")
+st.markdown("""#Welcome to Talking Toaster - your interactive device manual""")
 
-st.markdown("""### Please take of picture of your domestic appliance ☕️""")
+st.markdown("""### Please take a picture of your electronic device""")
 
 st.markdown("<br>", unsafe_allow_html=True)
 

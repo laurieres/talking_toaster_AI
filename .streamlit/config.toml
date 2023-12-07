@@ -7,3 +7,5 @@ backgroundColor = '#00325B' # Dark Blue
 secondaryBackgroundColor = '#00325B' # Lighter Blue
 
 textColor = '#FF8C02'
+
+font = "sans serif"
