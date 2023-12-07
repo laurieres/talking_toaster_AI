@@ -42,7 +42,7 @@ custom_html = """
 
 # Running our model
 
-st.markdown("""#Welcome to Talking Toaster - your interactive device manual""")
+st.markdown("""# Welcome to Talking Toaster - your interactive device manual""")
 
 st.markdown("""### Please take a picture of your electronic device""")
 
