@@ -136,7 +136,7 @@ if st.button("Upload File") or 'file_button' in st.session_state:
         st.markdown(f"Your photo is a {image_pred[0]}")
 
 
-        if 'previous_prediction' in st.session_state and st.session_state['previous_prediction'] != image_pred[0]:
+        if 'previous_prediction' in st.session_state and st.session_state['previous_prediction'] != image_pred[0] and 'welcome_message' in st.session_state:
             del st.session_state['welcome_message']
 
         st.session_state['previous_prediction'] = image_pred[0]
