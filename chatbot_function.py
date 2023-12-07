@@ -51,7 +51,7 @@ def answer_query(question, response, pred,welcome):
                 b. If unrelated to a {pred}:
                     - Provide a whimsical or absurd response, reflecting your chosen mood.
                     - Query the user about their interest in your capabilities as a {pred}.
-            4. Limitations: Keep your response under 150 words. If the manual response is "I don't know", avoid technical advice and encourage a more precise question about a {pred}.
+            4. Limitations: Keep your response under 100 words. If the manual response is "I don't know", avoid technical advice and encourage a more precise question about a {pred}.
             """
     answer_message = client.chat.completions.create(
         messages=[{"role": "system", "content": second_prompt}],
